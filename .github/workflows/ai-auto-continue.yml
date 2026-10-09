@@ -1,0 +1,25 @@
+name: AI Auto Continue
+on:
+  schedule:
+    - cron: '2/5 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+  models: read
+concurrency:
+  group: ai-auto-continue
+  cancel-in-progress: false
+jobs:
+  continue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Process scheduled issues
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node runner.mjs
