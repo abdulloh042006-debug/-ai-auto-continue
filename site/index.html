@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1120">
+<title>AI Auto Continue — Avtomatik AI vazifalar</title>
+<style>
+:root{color-scheme:dark;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:#090f1b;color:#f0f5ff}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 70% 0%,#17345f66,transparent 48%),#090f1b}
+.wrap{max-width:1100px;margin:0 auto;padding:0 22px}header{height:80px;border-bottom:1px solid #273449;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;gap:12px;align-items:center}.logo{display:grid;place-items:center;width:44px;height:44px;background:#21446c;border-radius:13px;font-size:29px;color:#b4d2ff}
+.brand strong{display:block}.brand small{display:block;color:#95aac4;margin-top:3px;font-size:11px}
+a{color:#b3d3ff}header a{text-decoration:none;border:1px solid #344760;padding:10px 14px;border-radius:10px;font-size:12px}
+main{padding:55px 0 70px}.eyebrow{font-size:11px;font-weight:700;color:#90bdff;letter-spacing:2px;text-transform:uppercase}
+h1{font-size:clamp(35px,6vw,64px);letter-spacing:-2px;line-height:1.12;margin:17px 0}h1 span{color:#94bdff}
+.intro p{color:#a0b5d0;max-width:645px;font-size:15px;line-height:1.8;margin:0 0 36px}
+.grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(285px,1fr);gap:18px}
+.panel{background:#111a2a;border:1px solid #30415a;border-radius:16px;padding:25px;box-shadow:0 15px 45px #0002}
+h2{font-size:19px;margin:0 0 8px}.muted{font-size:12px;color:#9badc5;line-height:1.6}
+label{display:block;font-size:13px;font-weight:650;margin:21px 0 8px}
+input,textarea{display:block;width:100%;border-radius:9px;border:1px solid #38506d;background:#0a1321;padding:13px 14px;color:#eaf3ff;font-size:14px;outline:none;font-family:inherit}
+input:focus,textarea:focus{border-color:#9fc5ff;box-shadow:0 0 0 3px #577ca733}
+textarea{resize:vertical;min-height:145px;line-height:1.55}input::placeholder,textarea::placeholder{color:#647a98}
+.columns{display:grid;grid-template-columns:1.4fr 1fr;gap:15px}.columns small{color:#8da3c0;font-size:11px}
+.notice{background:#152943;border:1px solid #385984;color:#cee3ff;padding:15px;border-radius:10px;margin-top:20px}
+.notice strong{font-size:13px}.notice p{font-size:12px;line-height:1.6;color:#b5d1f1;margin:7px 0 0}
+.primary{display:flex;justify-content:space-between;align-items:center;width:100%;border:0;border-radius:10px;background:#a2c8ff;color:#10233b;padding:15px 17px;margin:18px 0 10px;font-size:14px;font-weight:750;cursor:pointer}
+.primary:hover{background:#c1dbff}.aside{display:grid;gap:18px;align-content:start}
+.headrow{display:flex;align-items:center;justify-content:space-between;gap:8px}.headrow h2{font-size:17px;margin:0}
+.subbutton{background:none;border:0;color:#b3d3ff;cursor:pointer;font-size:12px}
+#tasks{display:grid;gap:8px;margin-top:13px}.task{display:block;text-decoration:none;background:#0c1727;border:1px solid #344763;padding:13px;border-radius:9px}
+.task b{display:block;color:#e5efff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}.task small{display:block;color:#99aecc;margin-top:6px;font-size:11px}
+.step{display:flex;gap:15px;margin-top:20px}.step b{color:#95befe;font-size:12px}.step p{color:#b5c7df;line-height:1.6;margin:0;font-size:12px}
+.warning{margin-top:23px;padding-top:17px;border-top:1px solid #364963;color:#e2bf9f;font-size:12px;line-height:1.7}
+footer{border-top:1px solid #273449;padding:19px 0 30px;color:#8297b2;font-size:11px;display:flex;justify-content:space-between;gap:10px}
+code{background:#22364f;padding:2px 5px;border-radius:4px;color:#b9d8ff}
+@media(max-width:750px){main{padding:38px 0 50px}.grid{grid-template-columns:1fr}.panel{padding:20px}.columns{grid-template-columns:1fr}header .brand small{display:none}footer{flex-direction:column}}
+</style>
+</head>
+<body><div class="wrap">
+<header><div class="brand"><div class="logo">↻</div><div><strong>AI Auto Continue</strong><small>Bepul AI avtomatlashtirish paneli</small></div></div><a id="actions" href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub Actions ↗</a></header>
+<main>
+<section class="intro"><div class="eyebrow">AVTOMATIK VAZIFALAR · V0.1</div><h1>AI ishni o‘zi<br><span>davom ettirsin.</span></h1><p>Vaqt va vazifani kiriting. AI har bir javobidan so‘ng, javob mazmunidan qat’i nazar, navbatdagi so‘rov sifatida <code>Continue</code> oladi. Noutbuk yoqilib turishi shart emas.</p></section>
+<div class="grid">
+<section class="panel"><h2>Yangi vazifa</h2><p class="muted">Vazifa GitHub Issue sifatida saqlanadi va GitHub Actions orqali bajariladi.</p>
+<form id="form">
+<label for="repo">GitHub repository</label><input id="repo" required pattern="[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+" placeholder="username/repository">
+<label for="name">Vazifa nomi</label><input id="name" required maxlength="80" placeholder="Loyihani davom ettirish">
+<label for="prompt">AI uchun birinchi buyruq</label><textarea id="prompt" required maxlength="3000" placeholder="Maqsadni va bajariladigan ishlarni batafsil yozing..."></textarea>
+<div class="columns"><div><label for="start">Boshlanish vaqti</label><input id="start" required type="datetime-local"></div><div><label for="max">Maksimal qadam</label><input id="max" required type="number" min="0" max="1000" value="20"><small>0 = qo‘lda to‘xtatilguncha</small></div></div>
+<div class="notice"><strong>↻ Avtomatik Continue yoqilgan</strong><p>GitHub Actions taxminan har 5 daqiqada tekshiradi; bir marta ishga tushganda ko‘pi bilan 3 ta AI javobi olinadi. Bepul limit tugasa pauza qilinadi.</p></div>
+<button class="primary" type="submit">Vazifani GitHub'ga yuborish <span>↗</span></button>
+<p class="muted">GitHub oynasi ochilgach, <b>Submit new issue</b> tugmasini bosing.</p></form></section>
+<aside class="aside"><section class="panel"><div class="headrow"><h2>Vazifalar</h2><button class="subbutton" type="button" id="refresh">Yangilash ↻</button></div><div class="muted" id="status">Yuklanmoqda...</div><div id="tasks"></div></section>
+<section class="panel"><div class="eyebrow">QANDAY ISHLAYDI?</div>
+<div class="step"><b>01</b><p>Vazifani va vaqtni tanlaysiz.</p></div>
+<div class="step"><b>02</b><p>GitHub Actions serverda vazifani ishga tushiradi.</p></div>
+<div class="step"><b>03</b><p>GitHub Models AI javobini Issue izohiga qo‘shadi.</p></div>
+<div class="step"><b>04</b><p>Keyingi so‘rov avtomatik: <code>Continue</code>.</p></div>
+<p class="warning">GitHub repository ochiq. Vazifa matnlari va javoblar hammaga ko‘rinishi mumkin. Parol yoki boshqa maxfiy ma'lumotlarni kiritmang. Bu versiya kod fayllarini o‘zi o‘zgartirmaydi.</p></section></aside>
+</div></main>
+<footer><span>AI Auto Continue · GitHub Models</span><span>Claude.ai chatlariga ulanmaydi · Matnli avtomatlashtirish</span></footer></div>
+<script>
+const el=id=>document.getElementById(id);
+const known='abdulloh042006-debug/-ai-auto-continue';
+const saved=localStorage.getItem('ai-auto-repo');
+el('repo').value=saved||known;
+const start=new Date(Date.now()+10*60000);
+start.setMinutes(start.getMinutes()-start.getTimezoneOffset());
+el('start').value=start.toISOString().slice(0,16);
+function validRepo(s){return /^[a-zA-Z0-9_.-]+\/[a-zA-Z0-9_.-]+$/.test(s)}
+function base64url(text){const bytes=new TextEncoder().encode(text);let out='';for(const n of bytes)out+=String.fromCharCode(n);return btoa(out).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
+function link(){const repo=el('repo').value.trim();el('actions').href=validRepo(repo)?'https://github.com/'+repo+'/actions':'https://github.com'}
+el('repo').addEventListener('change',()=>{localStorage.setItem('ai-auto-repo',el('repo').value.trim());refresh()});
+el('form').addEventListener('submit',event=>{
+  event.preventDefault();
+  const repo=el('repo').value.trim(),date=new Date(el('start').value),max=Number(el('max').value),prompt=el('prompt').value.trim();
+  if(!validRepo(repo))return alert('GitHub repository noto‘g‘ri kiritilgan.');
+  if(!Number.isFinite(date.getTime())||date.getTime()<Date.now()-60000)return alert('Kelajakdagi vaqtni tanlang.');
+  if(!prompt||!Number.isInteger(max)||max<0||max>1000)return alert('Prompt va qadamlar sonini tekshiring.');
+  const task={version:1,prompt,start_at:date.toISOString(),max_steps:max,model:'openai/gpt-4o-mini'};
+  const marker='<!-- AACS_TASK_V1:'+base64url(JSON.stringify(task))+' -->';
+  const title='[AI Auto] '+el('name').value.trim();
+  const body=marker+'\n## Vazifa\n'+prompt+'\n\n**Boshlanish:** '+date.toLocaleString('uz-UZ')+'\n**Qadam soni:** '+(max===0?'Cheklanmagan':max)+'\n\nTo‘xtatish uchun shu issue-ni yoping.';
+  const url='https://github.com/'+repo+'/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body);
+  if(url.length>12000)return alert('Prompt juda uzun, biroz qisqartiring.');
+  localStorage.setItem('ai-auto-repo',repo);
+  window.open(url,'_blank','noopener,noreferrer');
+  el('status').textContent='GitHub sahifasida Submit new issue ni bosing.';
+});
+async function refresh(){
+  const repo=el('repo').value.trim();el('tasks').replaceChildren();link();
+  if(!validRepo(repo)){el('status').textContent='Repository nomini kiriting.';return}
+  el('status').textContent='Vazifalar yuklanmoqda...';
+  try{
+    const res=await fetch('https://api.github.com/repos/'+repo+'/issues?state=all&per_page=50');
+    if(!res.ok)throw Error(res.status===404?'Repository topilmadi yoki ochiq emas.':'GitHub HTTP '+res.status);
+    const issues=(await res.json()).filter(x=>!x.pull_request&&x.body?.includes('AACS_TASK_V1:'));
+    el('status').textContent=issues.length?issues.length+' ta vazifa. Javoblarni ko‘rish uchun oching.':'Hali vazifa yo‘q.';
+    for(const issue of issues){
+      const a=document.createElement('a');a.className='task';a.href=issue.html_url;a.target='_blank';a.rel='noopener noreferrer';
+      const b=document.createElement('b');b.textContent=issue.title;
+      const small=document.createElement('small');small.textContent=(issue.state==='open'?'Faol':'Yopilgan')+' · '+issue.comments+' izoh · #'+issue.number;
+      a.append(b,small);el('tasks').append(a);
+    }
+  }catch(err){el('status').textContent='Xato: '+err.message}
+}
+el('refresh').addEventListener('click',refresh);refresh();
+</script>
+</body></html>
